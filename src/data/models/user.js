@@ -11,7 +11,7 @@ const statsSchema = new mongoose.Schema({
 
 const userSchema = new mongoose.Schema({
   id: String,
-  name: String,
+  username: String,
   password: String,
   stats: statsSchema,
 });
