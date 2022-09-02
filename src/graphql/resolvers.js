@@ -4,6 +4,8 @@ const { login } = require("../helpers/login");
 const resolvers = {
   Query: {
     getById: async (_, { id }) => await fetchUserById(id),
+  },
+  Mutation: {
     create: async (_, { name, password }) => await createUser(name, password),
     updateName: async (_, { id, newName }) => await updateUser(id, newName),
     login: async (_, { name, password }) => await login(name, password),
