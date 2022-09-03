@@ -1,14 +1,15 @@
-const { fetchUserById, createUser, updateUser } = require("../services/userService");
-const { login } = require("../helpers/login");
+const { fetchUserById, createUser, updateUser, fetchAllUsers } = require("../services/userService");
+const { loginUser } = require("../helpers/login");
 
 const resolvers = {
   Query: {
     getById: async (_, { id }) => await fetchUserById(id),
+    getAllUsers: async () => await fetchAllUsers(),
   },
   Mutation: {
-    create: async (_, { name, password }) => await createUser(name, password),
+    registerUser: async (_, { username, password }) => await createUser(username, password),
     updateName: async (_, { id, newName }) => await updateUser(id, newName),
-    login: async (_, { name, password }) => await login(name, password),
+    login: async (_, { username, password }) => await loginUser(username, password),
   },
 };
 

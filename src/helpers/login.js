@@ -2,8 +2,8 @@ const { generateJWT, verifyJWT } = require("./jwt");
 const { verifyPassword } = require("../helpers/password");
 const { fetchUserByName } = require("../services/userService");
 
-const login = async (name, password) => {
-  const user = await fetchUserByName(name);
+const loginUser = async (username, password) => {
+  const user = await fetchUserByName(username);
 
   if (!user) {
     throw new Error("Username and password don't match");
@@ -25,10 +25,10 @@ const makeLoginData = async user => {
   };
 };
 
-const makeExposedUser = ({ id, name, password, stats }) => {
+const makeExposedUser = ({ id, username, password, stats }) => {
   return {
     id,
-    name,
+    username,
     password,
     stats,
   };
@@ -56,4 +56,4 @@ const checkAndParseSession = async authHeader => {
   }
 };
 
-module.exports = { login, checkAndParseSession };
+module.exports = { loginUser, checkAndParseSession };

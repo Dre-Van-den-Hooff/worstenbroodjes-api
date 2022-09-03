@@ -2,17 +2,21 @@ const uuid = require("uuid");
 const userModel = require("../data/models/user");
 const { hashPassword } = require("../helpers/password");
 
-const fetchUserByName = async name => {
-  return await userModel.findOne({ name });
+const fetchAllUsers = async () => {
+  return await userModel.find();
+};
+
+const fetchUserByName = async username => {
+  return await userModel.findOne({ username });
 };
 
 const fetchUserById = async id => {
   return await userModel.findById(id);
 };
 
-const createUser = async (name, password) => {
+const createUser = async (username, password) => {
   // user with this name already exists
-  if (await fetchUserByName(name)) {
+  if (await fetchUserByName(username)) {
     return null;
   }
 
@@ -29,7 +33,7 @@ const createUser = async (name, password) => {
 
   return await userModel.create({
     id: uuid.v4(),
-    name,
+    username,
     password: hashedPassword,
     stats: defaultStats,
   });
@@ -41,10 +45,11 @@ const updateUser = async (id, newName) => {
     return null;
   }
 
-  return await userModel.findByIdAndUpdate(id, { name: newName });
+  return await userModel.findByIdAndUpdate(id, { username: newName });
 };
 
 module.exports = {
+  fetchAllUsers,
   fetchUserByName,
   fetchUserById,
   createUser,
