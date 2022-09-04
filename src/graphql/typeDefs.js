@@ -10,6 +10,16 @@ const typeDefs = gql`
     registerUser(username: String!, password: String!): User!
     updateName(id: ID!, newName: String!): User!
     login(username: String!, password: String!): LoggedInUser!
+    updateStats(id: ID!, stats: StatsInput!): User!
+  }
+
+  input StatsInput {
+    totalSpent: Float!
+    lastPurchase: Food
+    worstenbroodjes: Int!
+    pizzas: Int!
+    muffins: Int!
+    paninis: Int!
   }
 
   type User {

@@ -39,7 +39,7 @@ const createUser = async (username, password) => {
   });
 };
 
-const updateUser = async (id, newName) => {
+const updateUserName = async (id, newName) => {
   // user with this name already exists
   if (await fetchUserByName(newName)) {
     return null;
@@ -48,10 +48,15 @@ const updateUser = async (id, newName) => {
   return await userModel.findByIdAndUpdate(id, { username: newName });
 };
 
+const updateUserStats = async (id, stats) => {
+  return await userModel.findByIdAndUpdate(id, { stats });
+};
+
 module.exports = {
   fetchAllUsers,
   fetchUserByName,
   fetchUserById,
   createUser,
-  updateUser,
+  updateUserName,
+  updateUserStats,
 };
