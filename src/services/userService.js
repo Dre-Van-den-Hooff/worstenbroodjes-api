@@ -11,7 +11,7 @@ const fetchUserByName = async username => {
 };
 
 const fetchUserById = async id => {
-  return await userModel.findById(id);
+  return await userModel.findOne({ id });
 };
 
 const createUser = async (username, password) => {
@@ -44,12 +44,11 @@ const updateUserName = async (id, newName) => {
   if (await fetchUserByName(newName)) {
     return null;
   }
-
-  return await userModel.findByIdAndUpdate(id, { username: newName });
+  return await userModel.findOneAndUpdate({ id }, { username: newName });
 };
 
 const updateUserStats = async (id, stats) => {
-  return await userModel.findByIdAndUpdate(id, { stats });
+  return await userModel.findOneAndUpdate({ id }, { stats });
 };
 
 module.exports = {
