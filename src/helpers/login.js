@@ -6,7 +6,7 @@ const loginUser = async (username, password) => {
   const user = await fetchUserByName(username);
 
   if (!user) {
-    throw new Error("Username and password don't match");
+    throw new Error("Gebruikersnaam en wachtwoord komen niet overeen.");
   }
 
   if (await verifyPassword(password, user.password)) {

@@ -17,7 +17,7 @@ const fetchUserById = async id => {
 const createUser = async (username, password) => {
   // user with this name already exists
   if (await fetchUserByName(username)) {
-    return null;
+    throw new Error("Er bestaat al een gebruiker met deze gebruikersnaam.");
   }
 
   const hashedPassword = await hashPassword(password);
@@ -42,8 +42,9 @@ const createUser = async (username, password) => {
 const updateUserName = async (id, newName) => {
   // user with this name already exists
   if (await fetchUserByName(newName)) {
-    return null;
+    throw new Error("Er bestaat al een gebruiker met deze gebruikersnaam.");
   }
+
   return await userModel.findOneAndUpdate({ id }, { username: newName });
 };
 
