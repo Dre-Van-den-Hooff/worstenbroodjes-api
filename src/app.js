@@ -11,6 +11,7 @@ const main = async () => {
 
   if (process.env.NODE_ENV === "development") {
     populateDB();
+    console.log("Seeded database");
   }
 
   mongoose.connection.once("open", () => {
