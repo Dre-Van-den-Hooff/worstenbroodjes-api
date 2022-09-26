@@ -12,9 +12,9 @@ const loginUser = async (username, password) => {
   if (await verifyPassword(password, user.password)) {
     console.log("login successful");
     return makeLoginData(user);
+  } else {
+    throw new Error("Gebruikersnaam en wachtwoord komen niet overeen.");
   }
-
-  return null;
 };
 
 const makeLoginData = async user => {
