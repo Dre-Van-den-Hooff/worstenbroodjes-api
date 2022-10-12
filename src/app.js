@@ -5,7 +5,7 @@ const { initializeConnection, populateDB } = require("./data");
 const mongoose = require("mongoose");
 
 const main = async () => {
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({ typeDefs, resolvers, introspection: true });
 
   initializeConnection();
 
