@@ -3,6 +3,7 @@ const userModel = require("../data/models/user");
 const { hashPassword } = require("../helpers/password");
 
 const fetchAllUsers = async () => {
+  console.log("Get all users");
   return await userModel.find();
 };
 
